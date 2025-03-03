@@ -25,6 +25,7 @@ from .api import (
     fetch_stock_zh_a_spot,
     fetch_stock_zh_index_daily,
     fetch_stock_zh_index_spot,
+    fetch_stock_zt_pool_strong_em,
 )
 
 # Configure logging
@@ -46,6 +47,7 @@ class AKShareTools(str, Enum):
     FOREX_SPOT_QUOTE = "forex_spot_quote"
     FUTURES_ZH_SPOT = "futures_zh_spot"
     BOND_ZH_HS_COV_SPOT = "bond_zh_hs_cov_spot"
+    STOCK_ZT_POOL_STRONG_EM = "stock_zt_pool_strong_em"
 
 
 # Create the server
@@ -170,6 +172,17 @@ async def handle_list_tools() -> List[types.Tool]:
                 "required": [],
             },
         ),
+        types.Tool(
+            name=AKShareTools.STOCK_ZT_POOL_STRONG_EM.value,
+            description="Fetch today's strong stock pool data from East Money",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "date": {"type": "string", "description": "Date in format YYYYMMDD"},
+                },
+                "required": [],
+            },
+        ),
     ]
 
 
@@ -234,17 +247,20 @@ async def handle_call_tool(
                 result = await fetch_futures_zh_spot()
             case AKShareTools.BOND_ZH_HS_COV_SPOT.value:
                 result = await fetch_bond_zh_hs_cov_spot()
+            case AKShareTools.STOCK_ZT_POOL_STRONG_EM.value:
+                date = arguments.get("date")
+                result = await fetch_stock_zt_pool_strong_em(date=date)
             case _:
                 raise ValueError(f"Unknown tool: {name}")
         
         # Convert result to JSON string with proper formatting
         result_json = json.dumps(result, ensure_ascii=False, indent=2)
         
-        return [types.TextContent(text=result_json)]
+        return [types.TextContent(type="text", text=result_json)]
     except Exception as e:
         logger.error(f"Error executing tool {name}: {e}", exc_info=True)
         error_message = f"Error executing tool {name}: {str(e)}"
-        return [types.TextContent(text=error_message)]
+        return [types.TextContent(type="text", text=error_message)]
 
 
 async def main() -> None:
