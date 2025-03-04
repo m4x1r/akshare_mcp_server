@@ -63,7 +63,7 @@ async def handle_list_tools() -> List[types.Tool]:
     return [
         types.Tool(
             name=AKShareTools.STOCK_ZH_A_SPOT.value,
-            description="Fetch A-share stock data from the Chinese market",
+            description="获取中国A股市场股票实时数据",
             inputSchema={
                 "type": "object",
                 "properties": {},
@@ -72,22 +72,22 @@ async def handle_list_tools() -> List[types.Tool]:
         ),
         types.Tool(
             name=AKShareTools.STOCK_ZH_A_HIST.value,
-            description="Fetch A-share stock historical data from the Chinese market",
+            description="获取中国A股市场股票历史数据",
             inputSchema={
                 "type": "object",
                 "properties": {
-                    "symbol": {"type": "string", "description": "Stock code"},
-                    "period": {"type": "string", "description": "Data frequency: daily, weekly, monthly"},
-                    "start_date": {"type": "string", "description": "Start date in format YYYYMMDD"},
-                    "end_date": {"type": "string", "description": "End date in format YYYYMMDD"},
-                    "adjust": {"type": "string", "description": "Price adjustment: '', qfq (forward), hfq (backward)"},
+                    "symbol": {"type": "string", "description": "股票代码"},
+                    "period": {"type": "string", "description": "数据频率：daily（日）、weekly（周）、monthly（月）"},
+                    "start_date": {"type": "string", "description": "开始日期，格式为YYYYMMDD"},
+                    "end_date": {"type": "string", "description": "结束日期，格式为YYYYMMDD"},
+                    "adjust": {"type": "string", "description": "价格调整方式：''（不调整）、qfq（前复权）、hfq（后复权）"},
                 },
                 "required": ["symbol"],
             },
         ),
         types.Tool(
             name=AKShareTools.STOCK_ZH_INDEX_SPOT.value,
-            description="Fetch Chinese stock market index data",
+            description="获取中国股票市场指数实时数据",
             inputSchema={
                 "type": "object",
                 "properties": {},
@@ -96,40 +96,40 @@ async def handle_list_tools() -> List[types.Tool]:
         ),
         types.Tool(
             name=AKShareTools.STOCK_ZH_INDEX_DAILY.value,
-            description="Fetch Chinese stock market index daily data",
+            description="获取中国股票市场指数每日数据",
             inputSchema={
                 "type": "object",
                 "properties": {
-                    "symbol": {"type": "string", "description": "Index code"},
+                    "symbol": {"type": "string", "description": "指数代码"},
                 },
                 "required": ["symbol"],
             },
         ),
         types.Tool(
             name=AKShareTools.FUND_ETF_CATEGORY_SINA.value,
-            description="Fetch ETF fund data from Sina",
+            description="从新浪获取ETF基金数据",
             inputSchema={
                 "type": "object",
                 "properties": {
-                    "category": {"type": "string", "description": "Fund category"},
+                    "category": {"type": "string", "description": "基金类别"},
                 },
                 "required": [],
             },
         ),
         types.Tool(
             name=AKShareTools.FUND_ETF_HIST_SINA.value,
-            description="Fetch ETF fund historical data from Sina",
+            description="从新浪获取ETF基金历史数据",
             inputSchema={
                 "type": "object",
                 "properties": {
-                    "symbol": {"type": "string", "description": "ETF fund code"},
+                    "symbol": {"type": "string", "description": "ETF基金代码"},
                 },
                 "required": ["symbol"],
             },
         ),
         types.Tool(
             name=AKShareTools.MACRO_CHINA_GDP.value,
-            description="Fetch China GDP data",
+            description="获取中国GDP数据",
             inputSchema={
                 "type": "object",
                 "properties": {},
@@ -138,7 +138,7 @@ async def handle_list_tools() -> List[types.Tool]:
         ),
         types.Tool(
             name=AKShareTools.MACRO_CHINA_CPI.value,
-            description="Fetch China CPI data",
+            description="获取中国CPI数据",
             inputSchema={
                 "type": "object",
                 "properties": {},
@@ -147,7 +147,7 @@ async def handle_list_tools() -> List[types.Tool]:
         ),
         types.Tool(
             name=AKShareTools.FOREX_SPOT_QUOTE.value,
-            description="Fetch forex spot quotes",
+            description="获取外汇实时行情数据",
             inputSchema={
                 "type": "object",
                 "properties": {},
@@ -156,7 +156,7 @@ async def handle_list_tools() -> List[types.Tool]:
         ),
         types.Tool(
             name=AKShareTools.FUTURES_ZH_SPOT.value,
-            description="Fetch Chinese futures market spot data",
+            description="获取中国期货市场实时数据",
             inputSchema={
                 "type": "object",
                 "properties": {},
@@ -165,7 +165,7 @@ async def handle_list_tools() -> List[types.Tool]:
         ),
         types.Tool(
             name=AKShareTools.BOND_ZH_HS_COV_SPOT.value,
-            description="Fetch Chinese convertible bond data",
+            description="获取中国可转债实时数据",
             inputSchema={
                 "type": "object",
                 "properties": {},
@@ -174,11 +174,11 @@ async def handle_list_tools() -> List[types.Tool]:
         ),
         types.Tool(
             name=AKShareTools.STOCK_ZT_POOL_STRONG_EM.value,
-            description="Fetch today's strong stock pool data from East Money",
+            description="从东方财富获取今日强势股票池数据",
             inputSchema={
                 "type": "object",
                 "properties": {
-                    "date": {"type": "string", "description": "Date in format YYYYMMDD"},
+                    "date": {"type": "string", "description": "日期，格式为YYYYMMDD"},
                 },
                 "required": [],
             },
