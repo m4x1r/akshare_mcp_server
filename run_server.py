@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Entry point for the AKShare MCP server.
+Entry point for the AKShare FastMCP server in SSE mode.
 """
 
 import asyncio
@@ -17,7 +17,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 if __name__ == "__main__":
-    print("Starting AKShare MCP server...")
+    print("Starting AKShare FastMCP server in SSE mode...")
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
@@ -25,4 +25,4 @@ if __name__ == "__main__":
         sys.exit(0)
     except Exception as e:
         logger.error(f"Error running server: {e}", exc_info=True)
-        sys.exit(1) 
+        sys.exit(1)
